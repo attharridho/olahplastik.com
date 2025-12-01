@@ -1,0 +1,312 @@
+body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3); 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5); 
+        }
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+        }
+        /* BACKGROUND BIRU UTAMA */
+        .brand-blue {
+            background-color: #1A56DB; 
+            background: linear-gradient(105deg, #3b75f2 0%, #1A56DB 60%) !important;
+        }
+        /* SCROLL ANIMATION (POP UP) */
+        .pop-up-element {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .pop-up-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .pop-up-hidden-down { opacity: 0; transform: translateY(50px); }
+        .pop-up-hidden-up { opacity: 0; transform: translateY(-50px); }
+        /* Load Animation */
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .delay-100 { transition-delay: 100ms; animation-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; animation-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; animation-delay: 300ms; }
+        /* Animasi Fade In (Page Transition) */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            opacity: 1; 
+        }
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Profile-only Dark Mode overrides */
+.profile-dark .bg-white {
+  /* ubah putih menjadi brand-blue (sama seperti .brand-blue) */
+  background-color: #1A56DB !important;
+  /* pertahankan gradien jika ingin, atau gunakan solid; saya gunakan gradien agar konsisten */
+  background-image: linear-gradient(105deg, #3b75f2 0%, #1A56DB 60%) !important;
+  background-size: cover !important;
+  color: #ffffff !important;
+}
+
+/* ubah element yang sudah menggunakan .brand-blue menjadi hitam */
+.profile-dark .brand-blue {
+  background-color: #000000 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+}
+
+/* teks default agar tetap terbaca */
+.profile-dark .text-gray-900,
+.profile-dark .text-gray-800,
+.profile-dark .text-gray-700 {
+  color: #e5e7eb !important;
+}
+
+/* link / teks putih tetap putih */
+.profile-dark .text-white {
+  color: #ffffff !important;
+}
+
+/* field input/textarea/select agar terlihat gelap dan teks terbaca */
+.profile-dark input,
+.profile-dark textarea,
+.profile-dark select {
+  background-color: rgba(255,255,255,0.04) !important;
+  color: #e6eefb !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+/* card backgrounds with semi transparent whites */
+.profile-dark .bg-white\/5,
+.profile-dark .bg-white\\\/5 {
+  background-color: rgba(255,255,255,0.04) !important;
+}
+
+/* small helper untuk tombol toggle (bisa di-override dengan Tailwind class) */
+#profile-dark-toggle {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background-color .15s ease;
+}
+#profile-dark-toggle:hover {
+  background-color: rgba(255,255,255,0.04);
+}
+/* ---------------------------
+   Body background for profile dark toggle
+   --------------------------- */
+
+/* Applies brand-blue gradient to the page background when profile dark is active */
+body.profile-dark-body {
+  background-color: #1A56DB !important;
+  background-image: linear-gradient(105deg, #3b75f2 0%, #1A56DB 60%) !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  color: #ffffff;
+}
+
+/* If your layout uses html element background in some contexts, cover that too */
+html.profile-dark-body {
+  background-color: #1A56DB !important;
+  background-image: linear-gradient(105deg, #3b75f2 0%, #1A56DB 60%) !important;
+}
+
+/* Keep previous .profile-dark overrides as-is for inner UI (brand-blue -> black) */
+.profile-dark .bg-white {
+  background-color: #1A56DB !important;
+  background-image: linear-gradient(105deg, #3b75f2 0%, #1A56DB 60%) !important;
+  color: #ffffff !important;
+}
+.profile-dark .brand-blue {
+  background-color: #000000 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+}
+
+/* Ensure containers that used white/very light backgrounds but are outside #app-layout are readable */
+.profile-dark-body .text-gray-900,
+.profile-dark-body .text-gray-800,
+.profile-dark-body .text-gray-700 {
+  color: #e5e7eb !important;
+}
+
+/* Inputs & cards remain legible */
+.profile-dark input,
+.profile-dark textarea,
+.profile-dark select,
+.profile-dark-body input,
+.profile-dark-body textarea,
+.profile-dark-body select {
+  background-color: rgba(255,255,255,0.04) !important;
+  color: #e6eefb !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+/* small safety: avoid affecting login/signup overlays by increasing specificity there if needed.
+   If login/signup container has an id (login-container / signup-container) we can force it to keep original look */
+#login-container.profile-dark,
+#signup-container.profile-dark,
+body.profile-dark-body #login-container,
+body.profile-dark-body #signup-container {
+  background: initial !important;
+  color: initial !important;
+}
+.profile-dark #home-page p,
+.profile-dark #services-page p,
+.profile-dark #solutions-page p {
+    color: #ffffff !important;
+}
+/* Navbar menjadi warna hitam ketika dark mode */
+.profile-dark nav a,
+.profile-dark nav button,
+.profile-dark .navbar-text {
+    color: #000000 !important;
+}
+/* Tombol Profil berubah menjadi hitam dalam dark mode */
+.profile-dark button[data-is-profile-btn="1"],
+.profile-dark a[data-is-profile-btn="1"] {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+.profile-dark [data-is-profile-button="1"],
+.profile-dark [data-profile-btn="1"] {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+/* Profile actions spacing (responsive) */
+#profile-actions { max-width: 420px; }
+
+/* Floating Dark Mode toggle (bottom center) */
+#profile-dark-toggle {
+  min-width: 220px;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dark-mode styling when body/profile container has .profile-dark */
+/* Example: change main white areas -> brand-blue and brand-blue -> black (as requested earlier) */
+.profile-dark body,
+.profile-dark .bg-white { background-color: #1A56DB !important; } /* if you set .bg-white classes */
+.profile-dark .brand-blue { background-color: #000 !important; background-image: none !important; }
+
+/* Ensure description text becomes white in dark mode */
+.profile-dark .service-desc,
+.profile-dark #home-page p,
+.profile-dark #services-page p,
+.profile-dark #solutions-page p {
+  color: #ffffff !important;
+}
+
+/* Navbar links black in dark mode (override Tailwind color classes) */
+.profile-dark nav a,
+.profile-dark nav button,
+.profile-dark .navbar-text {
+  color: #000000 !important;
+}
+
+/* Profile button appearance override (target data attributes) */
+.profile-dark [data-profile-btn="1"],
+.profile-dark [data-is-profile-button="1"],
+.profile-dark [data-olah-profile="1"] {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
+}
+
+/* Make sure the floating toggle sits above other elements on small widths */
+@media (max-width: 640px) {
+  #profile-dark-toggle { min-width: 180px; bottom: 16px; }
+}
+/* ========== PROFILE ACTIONS LAYOUT - CLEANED ========== */
+#profile-actions { max-width: 760px; margin: 0 auto; }
+.profile-actions-grid {
+display: grid;
+grid-template-columns: 1fr auto 1fr;
+align-items: center;
+gap: 20px;
+padding: 12px 8px 36px; /* ruang bawah untuk tombol tengah */
+}
+
+
+/* columns */
+.profile-actions-col { display: flex; flex-direction: column; gap: 12px; }
+.left-col { align-items: flex-start; }
+.center-col { align-items: center; justify-content: center; }
+.right-col { align-items: flex-end; justify-content: center; }
+
+
+/* base profile button */
+.profile-btn { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px; font-weight:700; font-size:15px; border-radius:999px; border:none; cursor:pointer; min-height:44px; }
+
+
+/* variants */
+.primary-btn { background: linear-gradient(90deg,#3b75f2,#1A56DB); color:#fff; box-shadow:0 6px 18px rgba(26,86,219,0.18); }
+.outline-btn { background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.12); padding:12px 20px; }
+.danger-btn { background:#ef4444; color:#fff; }
+.dark-toggle-btn { min-width:220px; padding:11px 28px; border-radius:12px; background:linear-gradient(90deg,#3b75f2,#1A56DB); color:#fff; font-weight:700; box-shadow:0 10px 26px rgba(0,0,0,0.25); border:none; }
+
+
+/* smaller icon sizes */
+.profile-btn i, .outline-btn i { width:16px; height:16px; }
+
+
+/* Responsive: stack to single column on narrow screens */
+@media (max-width: 820px) {
+.profile-actions-grid { grid-template-columns: 1fr; gap: 12px; padding-bottom: 18px; }
+.left-col, .center-col, .right-col { align-items: center; }
+.dark-toggle-btn { min-width: 60%; }
+}
+
+
+/* Ensure data-attribute based profile button can be overridden in dark mode */
+.profile-dark [data-is-profile-button="1"] {
+background-color: #000 !important;
+color: #fff !important;
+border-color: #000 !important;
+}
+
+
+/* Prevent the center toggle from "floating down" too far (eliminates overlap) */
+.center-col .dark-toggle-btn { transform: none; margin-top: 0; }
+
+
+/* Make sure spacing between back/edit (left column) is compact and consistent */
+.left-col .profile-btn { margin-bottom: 4px; }
+
+
+/* Safety: avoid targeting login/signup overlays */
+#login-container, #signup-container { z-index: 70; }
